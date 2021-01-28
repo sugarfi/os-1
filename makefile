@@ -35,4 +35,4 @@ bin/os-image.bin: bin/boot.bin bin/kernel.bin
 	@cat $^ > bin/os-image.bin
 
 run: bin/os-image.bin
-	qemu-system-i386 bin/os-image.bin
+	qemu-system-i386 -fda bin/os-image.bin

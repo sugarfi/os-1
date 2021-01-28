@@ -37,14 +37,20 @@ load_kernel:
 [bits 32]
 BEGIN_PM:
     mov ebx, MSG_PROT_MODE
+
     call print_string_pm
     call KERNEL_OFFSET ; give control to the kernel
+
+    mov ebx, MSG_KERNEL_RETURN
+    call print_string_pm
+
     jmp $ ; if kernel returns, infinite loop
 
 BOOT_DRIVE db 0
 MSG_REAL_MODE db "started in 16-bit real mode", 0
 MSG_PROT_MODE db "started in 32-bit protected mode", 0
 MSG_LOAD_KERNEL db "loading kernel into memory", 0
+MSG_KERNEL_RETURN db "kernel returned", 0
 
 ; padding and special number
 times 510-($-$$) db 0
